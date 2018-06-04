@@ -22,7 +22,7 @@
 	
 	<bean id="dataSource" class="org.apache.tomcat.jdbc.pool.DataSource">
 		<property name="driverClassName" value="org.h2.Driver"></property>
-		<property name="url" value="jdbc:h2:~/test4"></property>
+		<property name="url" value="jdbc:h2:~/test5"></property>
 		<property name="username" value="sa"></property>
 		<property name="password" value=""></property>
 	</bean>
