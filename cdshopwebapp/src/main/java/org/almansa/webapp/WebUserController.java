@@ -9,6 +9,8 @@ import org.almansa.app.service.ApplicationUserService;
 import org.almansa.app.service.dto.UserJoinRequest;
 import org.almansa.webapp.dto.LoginSessionModel;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -35,8 +37,14 @@ public class WebUserController {
     }
     
     @RequestMapping(path="/get/{loginId}")
-    public ApplicationUser getByLoginId(@PathVariable String loginId) {
-        return userService.getUserByLoginId(loginId);
+    public ResponseEntity<ApplicationUser> getByLoginId(@PathVariable String loginId) {
+        ApplicationUser user = userService.getUserByLoginId(loginId);
+        
+        if(user == null) {
+            return new ResponseEntity<ApplicationUser>(HttpStatus.NO_CONTENT);
+        }
+        
+        return new ResponseEntity<ApplicationUser>(user, HttpStatus.OK);
     }
     
     @RequestMapping(path="/login", method=RequestMethod.POST)
