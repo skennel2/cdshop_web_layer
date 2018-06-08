@@ -23,13 +23,13 @@ public class WebUserController {
     ApplicationUserService userService;
     
     @RequestMapping(path="/add", method=RequestMethod.POST) 
-    public ResponseEntity<String> joinMember(@ModelAttribute UserJoinRequest request) { 
+    public ResponseEntity<Void> joinMember(@ModelAttribute UserJoinRequest request) { 
         try {
         	userService.joinUser(request);
         	
-        	return new ResponseEntity<String>(HttpStatus.OK);        	        	
+        	return new ResponseEntity<Void>(HttpStatus.OK);        	        	
         }catch(ApplicationUserJoinException e) {        	
-        	return new ResponseEntity<String>(HttpStatus.BAD_REQUEST);
+        	return new ResponseEntity<Void>(HttpStatus.BAD_REQUEST);
         }
     }
     
