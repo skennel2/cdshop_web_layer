@@ -1,0 +1,4 @@
+    @RequestMapping(path="/add", method=RequestMethod.POST) 
+    public ResponseEntity<String> joinMember(@ModelAttribute UserJoinRequest request) { 
+        // @ModelAttribute는 HTTP 바디에 Content-Type/x-www-form-urlencoded로 던져야 바인딩된다
+        // Content-Type/x-www-form-urlencoded는 key/value로 값을 던져야하는 규약        
