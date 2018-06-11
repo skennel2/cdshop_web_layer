@@ -35,7 +35,7 @@ public class WebUserController {
     
     @RequestMapping(path="/get/{loginId}")
     public ResponseEntity<ApplicationUser> getByLoginId(@PathVariable String loginId) {
-        ApplicationUser user = userService.getUserByLoginId(loginId);
+        ApplicationUser user = userService.findUserByLoginId(loginId);
         
         return new ResponseEntity<ApplicationUser>(user, HttpStatus.OK);
     }

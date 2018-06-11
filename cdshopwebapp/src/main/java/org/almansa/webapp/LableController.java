@@ -27,33 +27,31 @@ public class LableController {
             @RequestParam(required=false) String ceoName,
             @RequestParam(required=false, name="estDate") Date establishmentDate) {
         try {
-            lableService.addLable(lableName, ceoName, establishmentDate);
+            lableService.add(lableName, ceoName, establishmentDate);
             return new ResponseEntity<Void>(HttpStatus.OK);
         }catch(IllegalArgumentException e) {
             return new ResponseEntity<Void>(HttpStatus.BAD_REQUEST);
         }
     }
     
-    @RequestMapping(path="/all", method = RequestMethod.GET)
+    @RequestMapping(path="/get/all", method = RequestMethod.GET)
     public ResponseEntity<List<Lable>> getAllLables(){
-        return new ResponseEntity<List<Lable>>(lableService.getAll(), HttpStatus.OK);
+        return new ResponseEntity<List<Lable>>(lableService.findAll(), HttpStatus.OK);
     }
     
     @RequestMapping(path="/get/name/{lableName}", method = RequestMethod.GET)
     public ResponseEntity<List<Lable>> getByLableName(@PathVariable String lableName){
-        List<Lable> lables = lableService.getByName(lableName);
+        List<Lable> lables = lableService.findByName(lableName);
         return new ResponseEntity<List<Lable>>(lables, HttpStatus.OK);
     }  
     
-    //TODO not worked
     @RequestMapping(path="/get/id/{id}", method = RequestMethod.GET)
     public ResponseEntity<Lable> getById(@PathVariable("id") Long id){
         try {
-            Lable lable = lableService.getById(id); 
-            
+            Lable lable = lableService.findById(id); 
             return new ResponseEntity<Lable>(lable, HttpStatus.OK);
         }catch(Exception e) {
             return new ResponseEntity<Lable>(HttpStatus.BAD_REQUEST);
         }
-    }     
+    }
 }
