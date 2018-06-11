@@ -41,14 +41,17 @@ public class LableController {
     
     @RequestMapping(path="/get/name/{lableName}", method = RequestMethod.GET)
     public ResponseEntity<List<Lable>> getByLableName(@PathVariable String lableName){
-        return new ResponseEntity<List<Lable>>(lableService.getByName(lableName), HttpStatus.OK);
+        List<Lable> lables = lableService.getByName(lableName);
+        return new ResponseEntity<List<Lable>>(lables, HttpStatus.OK);
     }  
     
     //TODO not worked
     @RequestMapping(path="/get/id/{id}", method = RequestMethod.GET)
     public ResponseEntity<Lable> getById(@PathVariable("id") Long id){
         try {
-            return new ResponseEntity<Lable>(lableService.getById(id), HttpStatus.OK);
+            Lable lable = lableService.getById(id); 
+            
+            return new ResponseEntity<Lable>(lable, HttpStatus.OK);
         }catch(Exception e) {
             return new ResponseEntity<Lable>(HttpStatus.BAD_REQUEST);
         }
