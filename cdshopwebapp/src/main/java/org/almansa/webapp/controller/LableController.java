@@ -1,4 +1,4 @@
-package org.almansa.webapp;
+package org.almansa.webapp.controller;
 
 import java.util.Date;
 import java.util.List;
@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -23,7 +24,7 @@ public class LableController {
     private LableService lableService;
 
     @RequestMapping(path = "/add", method = RequestMethod.POST)
-    public ResponseEntity<Void> addLable(
+    public ResponseEntity<Void> add(
             @RequestParam String lableName, 
             @RequestParam(required=false) String ceoName,
             @RequestParam(required=false, name="estDate") Date establishmentDate) {

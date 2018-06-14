@@ -1,4 +1,4 @@
-package org.almansa.webapp;
+package org.almansa.webapp.controller;
 
 import java.util.List;
 

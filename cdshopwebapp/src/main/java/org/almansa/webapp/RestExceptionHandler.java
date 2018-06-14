@@ -14,17 +14,15 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Order(Ordered.HIGHEST_PRECEDENCE)
 public class RestExceptionHandler {
     
-    @ExceptionHandler(Exception.class)
-    @ResponseBody
-    public ResponseEntity<Object> handleExceptiion(HttpRequest request, Exception ex){
-        System.out.println("------------------------");
-        return new ResponseEntity<>(ex, HttpStatus.BAD_REQUEST);
-    }
-    
     @ExceptionHandler(EmptyResultDataAccessException.class)
     @ResponseBody
     public ResponseEntity<Object> handleEmptyResultDataAccessException(HttpRequest request, EmptyResultDataAccessException ex){
-        System.out.println("------------------------");
         return new ResponseEntity<>(ex, HttpStatus.BAD_REQUEST);
-    }    
+    }   
+    
+    @ExceptionHandler(Exception.class)
+    @ResponseBody
+    public ResponseEntity<Object> handleExceptiion(HttpRequest request, Exception ex){
+        return new ResponseEntity<>(ex, HttpStatus.BAD_REQUEST);
+    } 
 }
