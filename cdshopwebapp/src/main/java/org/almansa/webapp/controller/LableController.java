@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -28,12 +29,8 @@ public class LableController {
             @RequestParam String lableName, 
             @RequestParam(required=false) String ceoName,
             @RequestParam(required=false, name="estDate") Date establishmentDate) {
-        try {
-            lableService.add(lableName, ceoName, establishmentDate);
-            return new ResponseEntity<Void>(HttpStatus.OK);
-        }catch(IllegalArgumentException e) {
-            return new ResponseEntity<Void>(HttpStatus.BAD_REQUEST);
-        }
+        lableService.add(lableName, ceoName, establishmentDate);
+        return new ResponseEntity<Void>(HttpStatus.OK);
     }
     
     @RequestMapping(path="/get/all", method = RequestMethod.GET)
@@ -61,5 +58,5 @@ public class LableController {
         }catch(EmptyResultDataAccessException e) {
             throw e;
         }
-    }
+    } 
 }
