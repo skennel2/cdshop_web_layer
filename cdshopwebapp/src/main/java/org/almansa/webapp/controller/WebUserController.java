@@ -5,7 +5,7 @@ import java.util.List;
 import org.almansa.app.domain.user.ApplicationUser;
 import org.almansa.app.service.ApplicationUserService;
 import org.almansa.app.service.dto.UserJoinRequest;
-import org.almansa.app.service.exception.ApplicationUserJoinException;
+import org.almansa.app.service.exception.ApplicationUserValidationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -28,7 +28,7 @@ public class WebUserController {
         	userService.joinUser(request);
         	
         	return new ResponseEntity<Void>(HttpStatus.OK);        	        	
-        }catch(ApplicationUserJoinException e) {        	
+        }catch(ApplicationUserValidationException e) {        	
         	return new ResponseEntity<Void>(HttpStatus.BAD_REQUEST);
         }
     }
